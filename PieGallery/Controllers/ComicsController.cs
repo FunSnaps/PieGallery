@@ -27,7 +27,7 @@ namespace PieGallery.Controllers
         }
 
         // GET: Comics/ShowSearchForm
-        public async Task<IActionResult> ShowSearchForm() //URL name
+        public async Task<IActionResult> ShowSearchForm() 
         {
             return View();
         }
