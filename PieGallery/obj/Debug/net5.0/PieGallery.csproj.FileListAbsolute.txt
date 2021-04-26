@@ -447,7 +447,6 @@ E:\Uni\UniDocs\Year2\WAD\PieGallery - Copy\PieGallery\obj\Debug\net5.0\ref\PieGa
 E:\Uni\UniDocs\Year2\WAD\PieGallery - Copy\PieGallery\obj\Debug\net5.0\PieGallery.pdb
 E:\Uni\UniDocs\Year2\WAD\PieGallery - Copy\PieGallery\obj\Debug\net5.0\PieGallery.genruntimeconfig.cache
 E:\Uni\UniDocs\Year2\WAD\PieGallery\PieGallery\obj\Debug\net5.0\Razor\Views\Comics\Index.cshtml.g.cs
-E:\Uni\UniDocs\Year2\WAD\PieGallery\PieGallery\obj\Debug\net5.0\PieGallery.csprojAssemblyReference.cache
 E:\Uni\UniDocs\Year2\WAD\PieGallery\PieGallery\bin\Debug\net5.0\ServiceStack.Client.dll
 E:\Uni\UniDocs\Year2\WAD\PieGallery\PieGallery\bin\Debug\net5.0\ServiceStack.Interfaces.dll
 E:\Uni\UniDocs\Year2\WAD\PieGallery\PieGallery\bin\Debug\net5.0\ServiceStack.Text.dll
@@ -458,3 +457,4 @@ E:\Uni\UniDocs\Year2\WAD\PieGallery\PieGallery\obj\Debug\net5.0\Razor\Views\Admi
 E:\Uni\UniDocs\Year2\WAD\PieGallery\PieGallery\obj\Debug\net5.0\Razor\Views\Administration\ListRoles.cshtml.g.cs
 E:\Uni\UniDocs\Year2\WAD\PieGallery\PieGallery\obj\Debug\net5.0\Razor\Views\Administration\EditRole.cshtml.g.cs
 E:\Uni\UniDocs\Year2\WAD\PieGallery\PieGallery\obj\Debug\net5.0\Razor\Views\Administration\EditUsersInRole.cshtml.g.cs
+E:\Uni\UniDocs\Year2\WAD\PieGallery\PieGallery\obj\Debug\net5.0\PieGallery.csprojAssemblyReference.cache

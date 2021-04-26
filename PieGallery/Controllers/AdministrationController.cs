@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PieGallery.Models;
 using PieGallery.Security;
@@ -10,17 +11,16 @@ using System.Threading.Tasks;
 
 namespace PieGallery.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdministrationController : Controller
     {
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly UserManager<IdentityUser> userManager;
-        //private readonly SignInManager<AppIdentityUser> signInManager;
-
+  
         public AdministrationController(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager)
         {
             this.roleManager = roleManager;
-            this.userManager = userManager;
-            //this.signInManager = signInManager;
+            this.userManager = userManager;         
         }
 
         [HttpGet]
@@ -134,7 +134,7 @@ namespace PieGallery.Controllers
                 {
                     UserId = user.Id,
                     UserName = user.UserName
-                };
+                 };
 
                 if (await userManager.IsInRoleAsync(user, role.Name))
                 {
