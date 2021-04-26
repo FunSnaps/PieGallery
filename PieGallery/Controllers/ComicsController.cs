@@ -27,15 +27,26 @@ namespace PieGallery.Controllers
         }
 
         // GET: Comics/ShowSearchForm
-        public async Task<IActionResult> ShowSearchForm() 
+        public async Task<IActionResult> ShowSearchForm()
         {
             return View();
         }
 
-        // Post: Comics/ShowSearchResult 
-        public async Task<IActionResult> ShowSearchResults(String SearchTitle, String SearchAuthor, String SearchPublisher, DateTime SearchRDate) //URL name
+        // Post: Comics/ShowSearchResult  
+        public async Task<IActionResult> ShowSearchResults(String SearchTitle, String SearchAuthor, String SearchPublisher)
         {
-            return View("Index", await _context.Comics.Where(comic => comic.Title.Contains(SearchTitle)).ToListAsync());
+            if (SearchTitle != null)
+            {
+                return View("Index", await _context.Comics.Where(comic => comic.Title.Contains(SearchTitle)).ToListAsync());
+            }
+            else if (SearchAuthor != null)
+            {
+                return View("Index", await _context.Comics.Where(comic => comic.Author.Contains(SearchAuthor)).ToListAsync());
+            }
+            else
+            {
+                return View("Index", await _context.Comics.Where(comic => comic.Publisher.Contains(SearchPublisher)).ToListAsync());
+            }
         }
 
         // GET: Comics/Details/5
@@ -45,7 +56,7 @@ namespace PieGallery.Controllers
             {
                 return NotFound();
             }
-            
+
             var comics = await _context.Comics
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (comics == null)
