@@ -457,4 +457,6 @@ E:\Uni\UniDocs\Year2\WAD\PieGallery\PieGallery\obj\Debug\net5.0\Razor\Views\Admi
 E:\Uni\UniDocs\Year2\WAD\PieGallery\PieGallery\obj\Debug\net5.0\Razor\Views\Administration\ListRoles.cshtml.g.cs
 E:\Uni\UniDocs\Year2\WAD\PieGallery\PieGallery\obj\Debug\net5.0\Razor\Views\Administration\EditRole.cshtml.g.cs
 E:\Uni\UniDocs\Year2\WAD\PieGallery\PieGallery\obj\Debug\net5.0\Razor\Views\Administration\EditUsersInRole.cshtml.g.cs
+E:\Uni\UniDocs\Year2\WAD\PieGallery\PieGallery\obj\Debug\net5.0\Razor\Views\Administration\ListUsers.cshtml.g.cs
+E:\Uni\UniDocs\Year2\WAD\PieGallery\PieGallery\obj\Debug\net5.0\Razor\Views\Administration\EditUser.cshtml.g.cs
 E:\Uni\UniDocs\Year2\WAD\PieGallery\PieGallery\obj\Debug\net5.0\PieGallery.csprojAssemblyReference.cache

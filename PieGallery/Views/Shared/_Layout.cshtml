@@ -28,8 +28,17 @@
             </li>
             @if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Admin"))
             {
-              <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Administration" asp-action="ListRoles">Admin Area</a>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Manage
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" asp-controller="Administration"
+                     asp-action="ListUsers">Users</a>
+                  <a class="dropdown-item" asp-controller="Administration"
+                     asp-action="ListRoles">Roles</a>
+                </div>
               </li>
             }
             <li class="nav-item">
