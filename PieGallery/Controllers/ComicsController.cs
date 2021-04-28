@@ -69,6 +69,7 @@ namespace PieGallery.Controllers
 
         [HttpGet]
         [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -76,6 +77,7 @@ namespace PieGallery.Controllers
 
         [HttpPost]
         [Authorize]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,Author,Publisher,ReleaseDate,Streamed,Image,AgeRating,Price")] Comics comics)
         {
@@ -90,6 +92,7 @@ namespace PieGallery.Controllers
 
         [HttpGet]
         [Authorize]
+        [Authorize(Roles = "Admin, Member")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -107,6 +110,7 @@ namespace PieGallery.Controllers
 
         [HttpPost]
         [Authorize]
+        [Authorize(Roles = "Admin,Member")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Author,Publisher,ReleaseDate,Streamed,Image,AgeRating,Price")] Comics comics)
         {
@@ -140,6 +144,7 @@ namespace PieGallery.Controllers
 
         [HttpGet]
         [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -158,6 +163,7 @@ namespace PieGallery.Controllers
         }
 
         [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

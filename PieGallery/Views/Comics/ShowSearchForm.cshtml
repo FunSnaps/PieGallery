@@ -1,31 +1,37 @@
-﻿<h4>Search a Comic</h4>
-<hr />
-<div class="row">
-  <div class="col-md-4">
-    <form asp-action="ShowSearchResults">
-      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-      <div class="form-group">
-        Title
-        <label for="SearchTitle" class="control-label"></label>
-        <input name="SearchTitle" class="form-control" />
-      </div>
-      <div class="form-group">
-        Author
-        <label for="SearchAuthor" class="control-label"></label>
-        <input name="SearchAuthor" class="form-control" />
-      </div>
-      <div class="form-group">
-        Publisher
-        <label for="SearchPublisher" class="control-label"></label>
-        <input name="SearchPublisher" class="form-control" />
-      </div>
-      <div class="form-group">
-        <input type="submit" value="Search" class="btn btn-primary" />
-      </div>
-    </form>
-  </div>
-</div>
+﻿
+<body class="search-comics-page">
 
-<div>
-  <a asp-action="Index">Back to List</a>
-</div>
+  <div class="homeTitle animate__animated animate__heartBeat">
+    I spy with my little eye..
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <form asp-action="ShowSearchResults">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+          Title
+          <label for="SearchTitle" class="control-label"></label>
+          <input name="SearchTitle" class="form-control" />
+        </div>
+        <div class="form-group">
+          Author
+          <label for="SearchAuthor" class="control-label"></label>
+          <input name="SearchAuthor" class="form-control" />
+        </div>
+        <div class="form-group">
+          Publisher
+          <label for="SearchPublisher" class="control-label"></label>
+          <input name="SearchPublisher" class="form-control" />
+        </div>
+        <div class="form-group">
+          <input type="submit" value="Search" class="btn btn-primary" />
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <p>
+    <a asp-action="Index" class="btn btn-dark"> <i class="fas fa-hand-point-left"></i> &nbsp;Take a step back!</a>
+  </p>
+</body>

@@ -1,66 +1,70 @@
 ﻿@model PieGallery.Models.Comics
 
 @{
-    ViewData["Title"] = "Details";
+  ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<body class="details-comics-page">
+</body>
+
+<div class="homeTitle animate__animated animate__backInRight">
+  More info
+</div>
 
 <div>
-    <h4>Comics</h4>
-    <hr />
-    <dl class="row">
-      <dt class="col-sm-2">
-        @Html.DisplayNameFor(model => model.Title)
-      </dt>
-      <dd class="col-sm-10">
-        @Html.DisplayFor(model => model.Title)
-      </dd>
-      <dt class="col-sm-2">
-        @Html.DisplayNameFor(model => model.Author)
-      </dt>
-      <dd class="col-sm-10">
-        @Html.DisplayFor(model => model.Author)
-      </dd>
-      <dt class="col-sm-2">
-        @Html.DisplayNameFor(model => model.Publisher)
-      </dt>
-      <dd class="col-sm-10">
-        @Html.DisplayFor(model => model.Publisher)
-      </dd>
-      <dt class="col-sm-2">
-        @Html.DisplayNameFor(model => model.ReleaseDate)
-      </dt>
-      <dd class="col-sm-10">
-        @Html.DisplayFor(model => model.ReleaseDate)
-      </dd>
-      <dt class="col-sm-2">
-        @Html.DisplayNameFor(model => model.Streamed)
-      </dt>
-      <dd class="col-sm-10">
-        @Html.DisplayFor(model => model.Streamed)
-      </dd>
-      <dt class="col-sm-2">
-        @Html.DisplayNameFor(model => model.Image)
-      </dt>
-      <dd class="col-sm-10">
-        @Html.DisplayFor(model => model.Image)
-      </dd>
-      <dt class="col-sm-2">
-        @Html.DisplayNameFor(model => model.AgeRating)
-      </dt>
-      <dd class="col-sm-10">
-        @Html.DisplayFor(model => model.AgeRating)
-      </dd>
-      <dt class="col-sm-2">
-        @Html.DisplayNameFor(model => model.Price)
-      </dt>
-      <dd class="col-sm-10">
-        @Html.DisplayFor(model => model.Price)
-      </dd>
-    </dl>
+  <dl class="row">
+    <dt class="col-sm-2">
+      @Html.DisplayNameFor(model => model.Title)
+    </dt>
+    <dd class="col-sm-10">
+      @Html.DisplayFor(model => model.Title)
+    </dd>
+    <dt class="col-sm-2">
+      @Html.DisplayNameFor(model => model.Author)
+    </dt>
+    <dd class="col-sm-10">
+      @Html.DisplayFor(model => model.Author)
+    </dd>
+    <dt class="col-sm-2">
+      @Html.DisplayNameFor(model => model.Publisher)
+    </dt>
+    <dd class="col-sm-10">
+      @Html.DisplayFor(model => model.Publisher)
+    </dd>
+    <dt class="col-sm-2">
+      @Html.DisplayNameFor(model => model.ReleaseDate)
+    </dt>
+    <dd class="col-sm-10">
+      @Html.DisplayFor(model => model.ReleaseDate)
+    </dd>
+    <dt class="col-sm-2">
+      @Html.DisplayNameFor(model => model.Streamed)
+    </dt>
+    <dd class="col-sm-10">
+      @Html.DisplayFor(model => model.Streamed)
+    </dd>
+    <dt class="col-sm-2">
+      @Html.DisplayNameFor(model => model.Image)
+    </dt>
+    <dd class="col-sm-10">
+      @Html.DisplayFor(model => model.Image)
+    </dd>
+    <dt class="col-sm-2">
+      @Html.DisplayNameFor(model => model.AgeRating)
+    </dt>
+    <dd class="col-sm-10">
+      @Html.DisplayFor(model => model.AgeRating)
+    </dd>
+    <dt class="col-sm-2">
+      @Html.DisplayNameFor(model => model.Price)
+    </dt>
+    <dd class="col-sm-10">
+      @Html.DisplayFor(model => model.Price)
+    </dd>
+  </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+<p>
+  <a asp-action="Edit" asp-route-id="@Model.Id" class=" btn btn-success">Edit</a> 
+  <a asp-action="Index" class="btn btn-dark"> <i class="fas fa-hand-point-left"></i> &nbsp;Take a step back!</a>
+</p>
