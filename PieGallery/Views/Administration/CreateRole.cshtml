@@ -4,10 +4,10 @@
   ViewData["Title"] = "Create a new role";
 }
 
-<h1>@ViewData["Title"]</h1>
+<div class="homeTitle animate__animated animate__flash">
+  Create a new role!
+</div>
 
-<h4>Role Creation</h4>
-<hr />
 <div class="row">
   <div class="col-md-4">
     <form method="post">
@@ -18,7 +18,7 @@
         <span asp-validation-for="RoleName" class="text-danger"></span>
       </div>
       <div class="form-group">
-        <input type="submit" value="Create" class="btn btn-primary" />
+        <input type="submit" value="Create" class="btn btn-success" />
       </div>
     </form>
   </div>
