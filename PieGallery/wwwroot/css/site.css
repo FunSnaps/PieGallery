@@ -1,21 +1,37 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
+﻿@import url('https://fonts.googleapis.com/css2?family=Girassol&display=swap');
+
+nav {
+  background-color: black !important;
+}
+
+.text-dark {
+  color: white !important;
+}
 
 a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
+  color: #fff !important;
+}
+
+a.nav-link:hover{
+  color: yellow !important;
 }
 
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+  color: black;
 }
 
 .btn-primary {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
+}
+
+button.nav-link:hover {
+  color: yellow !important;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
@@ -29,6 +45,7 @@ a {
 html {
   font-size: 14px;
 }
+
 @media (min-width: 768px) {
   html {
     font-size: 16px;
@@ -38,6 +55,7 @@ html {
 .border-top {
   border-top: 1px solid #e5e5e5;
 }
+
 .border-bottom {
   border-bottom: 1px solid #e5e5e5;
 }
@@ -60,12 +78,70 @@ html {
 
 body {
   /* Margin bottom by footer height */
+  font-size: 150%;
   margin-bottom: 60px;
+  background-color: darkgoldenrod !important;
+  font-family: 'Girassol', cursive;
 }
+
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+}
+
+.homeTitle {
+  font-size: 70px;
+  text-align: center;
+  margin-top: 5%;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: white;
+}
+
+footer.border-top.footer {
+  background-color: white;
+}
+
+button.nav-link {
+  font-size: 24px !important;
+}
+
+.section {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+  .section h1 {
+    text-align: center;
+    font-size: 4rem;
+    color: lightslategray;
+    padding: 20px;
+    margin: 15px;
+    z-index: 1;
+    opacity: 0.7;
+  }
+
+.video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.color-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  opacity: 0.5;
 }

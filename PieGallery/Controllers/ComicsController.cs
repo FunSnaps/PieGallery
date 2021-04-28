@@ -20,19 +20,19 @@ namespace PieGallery.Controllers
             _context = context;
         }
 
-        // GET: Comics
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Comics.ToListAsync());
         }
 
-        // GET: Comics/ShowSearchForm
+        [HttpGet]
         public async Task<IActionResult> ShowSearchForm()
         {
             return View();
         }
 
-        // Post: Comics/ShowSearchResult  
+        [HttpPost]
         public async Task<IActionResult> ShowSearchResults(String SearchTitle, String SearchAuthor, String SearchPublisher)
         {
             if (SearchTitle != null)
@@ -49,7 +49,7 @@ namespace PieGallery.Controllers
             }
         }
 
-        // GET: Comics/Details/5
+        [HttpGet]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -67,16 +67,13 @@ namespace PieGallery.Controllers
             return View(comics);
         }
 
-        // GET: Comics/Create
+        [HttpGet]
         [Authorize]
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Comics/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
@@ -91,7 +88,7 @@ namespace PieGallery.Controllers
             return View(comics);
         }
 
-        // GET: Comics/Edit/5
+        [HttpGet]
         [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -108,9 +105,6 @@ namespace PieGallery.Controllers
             return View(comics);
         }
 
-        // POST: Comics/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
@@ -144,7 +138,7 @@ namespace PieGallery.Controllers
             return View(comics);
         }
 
-        // GET: Comics/Delete/5
+        [HttpGet]
         [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
@@ -163,7 +157,6 @@ namespace PieGallery.Controllers
             return View(comics);
         }
 
-        // POST: Comics/Delete/5
         [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

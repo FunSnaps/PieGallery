@@ -69,7 +69,7 @@ namespace PieGallery.Controllers
             else
             {
                 user.Email = model.Email;
-                user.UserName = model.UserName;             
+                user.UserName = model.UserName;
 
                 var result = await userManager.UpdateAsync(user);
 
@@ -115,10 +115,108 @@ namespace PieGallery.Controllers
             }
         }
 
+        [HttpPost]
+        public async Task<IActionResult> DeleteRole(string id)
+        {
+            var role = await roleManager.FindByIdAsync(id);
+
+            if (role == null)
+            {
+                ViewBag.ErrorMessage = $"Role with Id = {id} cannot be found";
+                return View("Error");
+            }
+            else
+            {
+                var result = await roleManager.DeleteAsync(role);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("ListRoles");
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+
+                return View("ListRoles");
+            }
+        }
+
         [HttpGet]
         public IActionResult CreateRole()
         {
             return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ManageUserRoles(string userId)
+        {
+            ViewBag.userId = userId;
+
+            var user = await userManager.FindByIdAsync(userId);
+
+            if (user == null)
+            {
+                ViewBag.ErrorMessage = $"User with Id = {userId} cannot be found";
+                return View("Error");
+            }
+
+            var model = new List<UserRoles>();
+
+            foreach (var role in roleManager.Roles)
+            {
+                var userRoles = new UserRoles
+                {
+                    RoleId = role.Id,
+                    RoleName = role.Name
+                };
+
+                if (await userManager.IsInRoleAsync(user, role.Name))
+                {
+                    userRoles.IsSelected = true;
+                }
+                else
+                {
+                    userRoles.IsSelected = false;
+                }
+
+                model.Add(userRoles);
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ManageUserRoles(List<UserRoles> model, string userId)
+        {
+            var user = await userManager.FindByIdAsync(userId);
+
+            if (user == null)
+            {
+                ViewBag.ErrorMessage = $"User with Id = {userId} cannot be found";
+                return View("NotFound");
+            }
+
+            var roles = await userManager.GetRolesAsync(user);
+            var result = await userManager.RemoveFromRolesAsync(user, roles);
+
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError("", "Cannot remove user existing roles");
+                return View(model);
+            }
+
+            result = await userManager.AddToRolesAsync(user,
+                model.Where(x => x.IsSelected).Select(y => y.RoleName));
+
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError("", "Cannot add selected roles to user");
+                return View(model);
+            }
+
+            return RedirectToAction("EditUser", new { Id = userId });
         }
 
         [HttpPost]
