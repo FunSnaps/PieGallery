@@ -1,39 +1,71 @@
 ﻿@model IEnumerable<PieGallery.Models.Comics>
 
 @{
-  ViewData["Title"] = "Index";
+    ViewData["Title"] = "Index";
 }
 
-<body class="comics-body">
+<h1>Index</h1>
 
-  <div class="homeTitle animate__animated animate__wobble">
-    Contribute!
-  </div>
-
-  <p>
-    <a asp-controller="Comics" asp-action="Create" class="btn btn-dark"> <i class="fas fa-plus"></i> &nbsp;Create new entry!</a>
-  </p>
-
-
-  <div class="row">
-    @foreach (var item in Model)
-    {
-      <div class="card" style="width: 20rem;">
-        <img class="card-img-top" src="~/images/@item.Image" alt="Card image cap">
-
-        <div class="card-body">
-
-          <ul class="list-group list-group-flush">
-            <li style="list-style-type: none" class="card-title">@Html.DisplayNameFor(model => model.Title): @Html.DisplayFor(modelItem => item.Title)</li>
-            <li style="list-style-type: none" class="card-title">@Html.DisplayNameFor(model => model.Author): @Html.DisplayFor(modelItem => item.Author)</li>
-            <li style="list-style-type: none" class="card-title">@Html.DisplayNameFor(model => model.Price): @Html.DisplayFor(modelItem => item.Price)</li>
-          </ul>
-
-          <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-dark options"><i class="fas fa-edit"></i>&nbsp;Edit</a>
-          <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info options"><i class="fas fa-info-circle"></i> &nbsp;Info</a>
-          <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger options"><i class="fas fa-trash-alt"></i>&nbsp;Delete</a>
-        </div>
-      </div>
-    }
-  </div>
-</body>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReleaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComicImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AgeRating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Authors)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Publisher)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComicImage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AgeRating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Authors.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Publisher.id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

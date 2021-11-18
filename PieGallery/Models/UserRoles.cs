@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace PieGallery.Models
+﻿namespace PieGallery.Models
 {
     public class UserRoles
     {

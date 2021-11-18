@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PieGallery.Data;
 using PieGallery.Models;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace PieGallery.Controllers
 {
@@ -23,7 +22,9 @@ namespace PieGallery.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Comics.ToListAsync());
+            var applicationDbContext = _context.Comics.Include(c => c.Authors).Include(c => c.Publisher);
+            return View(await applicationDbContext.ToListAsync());
+
         }
 
         [HttpGet]
@@ -41,11 +42,11 @@ namespace PieGallery.Controllers
             }
             else if (SearchAuthor != null)
             {
-                return View("Index", await _context.Comics.Where(comic => comic.Author.Contains(SearchAuthor)).ToListAsync());
+                return View("Index", await _context.Comics.Where(comic => comic.Authors.Name.Contains(SearchAuthor)).ToListAsync());
             }
             else
             {
-                return View("Index", await _context.Comics.Where(comic => comic.Publisher.Contains(SearchPublisher)).ToListAsync());
+                return View("Index", await _context.Comics.Where(comic => comic.Publisher.Name.Contains(SearchPublisher)).ToListAsync());
             }
         }
 
@@ -58,7 +59,10 @@ namespace PieGallery.Controllers
             }
 
             var comics = await _context.Comics
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .Include(c => c.Authors)
+                .Include(c => c.Publisher)
+                .FirstOrDefaultAsync(m => m.id == id);
+
             if (comics == null)
             {
                 return NotFound();
@@ -72,6 +76,8 @@ namespace PieGallery.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
+            ViewData["AuthorId"] = new SelectList(_context.Set<Authors>(), "id", "id");
+            ViewData["PublisherId"] = new SelectList(_context.Set<Publisher>(), "id", "id");
             return View();
         }
 
@@ -79,15 +85,17 @@ namespace PieGallery.Controllers
         [Authorize]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Author,Publisher,ReleaseDate,Streamed,Image,AgeRating,Price")] Comics comics)
+        public async Task<IActionResult> Create([Bind("id,Title,AuthorId,PublisherId,ReleaseDate,ComicImage,AgeRating,Price")] Comics comic)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(comics);
+                _context.Add(comic);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(comics);
+            ViewData["AuthorId"] = new SelectList(_context.Set<Authors>(), "id", "id");
+            ViewData["PublisherId"] = new SelectList(_context.Set<Publisher>(), "id", "id");
+            return View(comic);
         }
 
         [HttpGet]
@@ -105,6 +113,8 @@ namespace PieGallery.Controllers
             {
                 return NotFound();
             }
+            ViewData["AuthorId"] = new SelectList(_context.Set<Authors>(), "id", "id");
+            ViewData["PublisherId"] = new SelectList(_context.Set<Publisher>(), "id", "id");
             return View(comics);
         }
 
@@ -112,9 +122,9 @@ namespace PieGallery.Controllers
         [Authorize]
         [Authorize(Roles = "Admin,Member")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Author,Publisher,ReleaseDate,Streamed,Image,AgeRating,Price")] Comics comics)
+        public async Task<IActionResult> Edit(int id, [Bind("id,Title,AuthorId,PublisherId,ReleaseDate,ComicImage,AgeRating,Price")] Comics comics)
         {
-            if (id != comics.Id)
+            if (id != comics.id)
             {
                 return NotFound();
             }
@@ -128,7 +138,7 @@ namespace PieGallery.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ComicsExists(comics.Id))
+                    if (!ComicsExists(comics.id))
                     {
                         return NotFound();
                     }
@@ -139,6 +149,8 @@ namespace PieGallery.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["AuthorId"] = new SelectList(_context.Set<Authors>(), "id", "id");
+            ViewData["PublisherId"] = new SelectList(_context.Set<Publisher>(), "id", "id");
             return View(comics);
         }
 
@@ -153,7 +165,9 @@ namespace PieGallery.Controllers
             }
 
             var comics = await _context.Comics
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .Include(c => c.Authors)
+                .Include(c => c.Publisher)
+                .FirstOrDefaultAsync(m => m.id == id);
             if (comics == null)
             {
                 return NotFound();
@@ -176,7 +190,7 @@ namespace PieGallery.Controllers
 
         private bool ComicsExists(int id)
         {
-            return _context.Comics.Any(e => e.Id == id);
+            return _context.Comics.Any(e => e.id == id);
         }
     }
 }

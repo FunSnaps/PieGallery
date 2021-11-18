@@ -1,5 +1,3 @@
-using System;
-
 namespace PieGallery.Models
 {
     public class ErrorViewModel

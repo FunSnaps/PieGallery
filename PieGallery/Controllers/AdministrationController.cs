@@ -2,9 +2,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PieGallery.Models;
-using PieGallery.Security;
-using ServiceStack;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

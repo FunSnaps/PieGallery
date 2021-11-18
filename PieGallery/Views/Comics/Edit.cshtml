@@ -1,73 +1,61 @@
 ﻿@model PieGallery.Models.Comics
 
 @{
-  ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit";
 }
-<body class="edit-comics-page">
 
-  <div class="homeTitle animate__animated animate__backInUp">
-    Something wrong?!
-  </div>
+<h1>Edit</h1>
 
-  <div class="row editpage">
+<h4>Comics</h4>
+<hr />
+<div class="row">
     <div class="col-md-4">
-      <form asp-action="Edit">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <input type="hidden" asp-for="Id" />
-        <div class="form-group">
-          <label asp-for="Title" class="control-label"></label>
-          <input asp-for="Title" class="form-control" />
-          <span asp-validation-for="Title" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-          <label asp-for="Author" class="control-label"></label>
-          <input asp-for="Author" class="form-control" />
-          <span asp-validation-for="Author" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-          <label asp-for="Publisher" class="control-label"></label>
-          <input asp-for="Publisher" class="form-control" />
-          <span asp-validation-for="Publisher" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-          <label asp-for="ReleaseDate" class="control-label"></label>
-          <input asp-for="ReleaseDate" class="form-control" />
-          <span asp-validation-for="ReleaseDate" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-          <label asp-for="Streamed" class="control-label"></label>
-          <input asp-for="Streamed" class="form-control" />
-          <span asp-validation-for="Streamed" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-          <label asp-for="Image" class="control-label"></label>
-          <input asp-for="Image" class="form-control" />
-          <span asp-validation-for="Image" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-          <label asp-for="AgeRating" class="control-label"></label>
-          <input asp-for="AgeRating" class="form-control" />
-          <span asp-validation-for="AgeRating" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-          <label asp-for="Price" class="control-label"></label>
-          <input asp-for="Price" class="form-control" />
-          <span asp-validation-for="Price" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-          <input type="submit" value="Save" class="btn btn-success" />
-        </div>
-        <p>
-          <a asp-action="Index" class="btn btn-dark"> <i class="fas fa-hand-point-left"></i> &nbsp;Take a step back!</a>
-        </p>
-      </form>
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AuthorId" class="control-label"></label>
+                <select asp-for="AuthorId" class="form-control" asp-items="ViewBag.AuthorId"></select>
+                <span asp-validation-for="AuthorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PublisherId" class="control-label"></label>
+                <select asp-for="PublisherId" class="form-control" asp-items="ViewBag.PublisherId"></select>
+                <span asp-validation-for="PublisherId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReleaseDate" class="control-label"></label>
+                <input asp-for="ReleaseDate" class="form-control" />
+                <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ComicImage" class="control-label"></label>
+                <input asp-for="ComicImage" class="form-control" />
+                <span asp-validation-for="ComicImage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AgeRating" class="control-label"></label>
+                <input asp-for="AgeRating" class="form-control" />
+                <span asp-validation-for="AgeRating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
     </div>
-  </div>
+</div>
 
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
 
-
-</body>
-
-@section Scripts {
-  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
